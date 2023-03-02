@@ -1,32 +1,52 @@
 import { useQuery } from "@tanstack/react-query";
 import Message from "components/Message/Message";
+import Modal from "components/Modal/Modal";
+import ToolBox from "components/ToolBox/ToolBox";
 import { getAllMessages } from "features/messagingInterface";
-import { useMemo } from "react";
-import { useAuthor } from "store/authorContext";
+import useModal from "hooks/modal";
+import { useMemo, useState } from "react";
+import { SORTING_MESSAGES } from "utils/constants";
 import type { Message as MessageType } from "utils/types";
 import classes from "./MessageList.module.css";
 
 const MessagesList: React.FC = () => {
-  const { dispatch } = useAuthor();
+  const [sortingOrder, setSortingOrder] = useState(SORTING_MESSAGES.ASC);
 
-  const {
-    data: listOfMessages,
-    error,
-    isLoading,
-    isSuccess,
-  } = useQuery<MessageType[]>({
+  const { data: listOfMessages, error } = useQuery<MessageType[]>({
     queryKey: ["messages"],
     queryFn: getAllMessages,
   });
 
+  const { isOpen, toggle } = useModal(Boolean(error));
+
+  // Showing the messages in reverse chronological order as stated in instructions
+  // And adding functionality to reverse this order
   const sortedMessagesByTime = useMemo(() => {
     return listOfMessages?.sort((a, b) => {
-      return new Date(a.timestamp).valueOf() - new Date(b.timestamp).valueOf();
+      return sortingOrder === SORTING_MESSAGES.ASC
+        ? new Date(b.timestamp).valueOf() - new Date(a.timestamp).valueOf()
+        : new Date(a.timestamp).valueOf() - new Date(b.timestamp).valueOf();
     });
-  }, [listOfMessages]);
+  }, [listOfMessages, sortingOrder]);
+
+  if (error) {
+    return (
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <div className={classes.errorBox}>
+          <p className={classes.errorParagraph}>
+            The Error ocurred please try later
+          </p>
+        </div>
+      </Modal>
+    );
+  }
 
   return (
     <div className={classes.messagesContainer}>
+      <ToolBox
+        sortingHandler={(dir: string) => setSortingOrder(dir)}
+        direction={sortingOrder}
+      />
       {sortedMessagesByTime?.map((message) => (
         <Message key={message._id} message={message} />
       ))}

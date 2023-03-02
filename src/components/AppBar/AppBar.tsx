@@ -13,8 +13,6 @@ const AppBar: React.FC = () => {
     state: { author },
   } = useAuthor();
 
-  console.log(author);
-
   const { mutate, isLoading: isLoadingMutation } = useMutation({
     mutationFn: ({ author, message }: MessagePayload) =>
       addAMessage({ author, message }),

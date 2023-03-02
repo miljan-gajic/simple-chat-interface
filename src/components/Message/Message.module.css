@@ -29,10 +29,21 @@
 .authoredMessage {
   align-self: flex-end;
   background-color: var(--bg-clr-authored);
+  margin-bottom: 1rem;
+}
+
+.messageBox.authoredMessage:first-child {
+  margin-top: 1rem;
 }
 
 .messageText {
   color: var(--clr-main);
   margin: 0;
   padding: 0.3rem 0;
+}
+
+@media screen and (max-width: 450px) {
+  .messageBox {
+    max-width: 270px;
+  }
 }

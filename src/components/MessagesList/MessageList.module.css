@@ -6,3 +6,15 @@
   height: calc(100vh - 115px);
   padding: 0 1.5rem;
 }
+
+.errorBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.errorParagraph {
+  color: #000;
+  text-align: center;
+}

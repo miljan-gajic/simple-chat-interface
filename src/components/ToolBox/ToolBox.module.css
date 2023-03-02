@@ -1,0 +1,11 @@
+.toolBoxWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 1rem 2rem;
+}
+
+.buttonIcon {
+  cursor: pointer;
+}
