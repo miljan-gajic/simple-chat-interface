@@ -1,4 +1,5 @@
 import ChangeUserPopUp from "components/ChangeUserPopUp/ChangeUserPopUp";
+import TimePicker from "components/TimePicker/TimePicker";
 import { useState } from "react";
 import { Clock, Repeat, User } from "react-feather";
 import { useAuthor } from "store/authorContext";
@@ -17,6 +18,7 @@ const ToolBox: React.FC<Props> = ({
   toggleAuthorModal,
 }) => {
   const [showUserPopUp, setShowUserPopUp] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
 
   const {
     state: { author },
@@ -36,8 +38,13 @@ const ToolBox: React.FC<Props> = ({
       >
         <Repeat color="#999" size={28} />
       </div>
-      <div title="Show from time..." className={classes.buttonIcon}>
+      <div
+        title="Show from time..."
+        className={`${classes.buttonIcon} ${classes.changeUserPopUp}`}
+        onClick={() => setShowTimePicker(!showTimePicker)}
+      >
         <Clock color="#999" size={28} />
+        {showTimePicker && <TimePicker />}
       </div>
       <div
         title="Change user"
