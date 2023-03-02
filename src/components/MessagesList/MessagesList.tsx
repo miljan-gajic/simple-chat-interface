@@ -1,5 +1,40 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Message from "components/Message/Message";
+import { addAMessage, getAllMessages } from "features/messagingInterface";
+import type { Message as MessageType, MessagePayload } from "utils/types";
+
 const MessagesList: React.FC = () => {
-  return <div>Hello from Messages List</div>;
+  const queryClient = useQueryClient();
+
+  const { data, error, isLoading, isSuccess } = useQuery<MessageType[]>({
+    queryKey: ["messages"],
+    queryFn: getAllMessages,
+  });
+
+  const { mutate, isLoading: isLoadingMutation } = useMutation({
+    mutationFn: ({ author, message }: MessagePayload) =>
+      addAMessage({ author, message }),
+    onSuccess: () => queryClient.invalidateQueries(["messages"]),
+  });
+
+  const addNewMessageHandler = () => {
+    mutate({
+      author: "Miljan Gajic",
+      message: "This is first message from the client",
+    });
+  };
+
+  return (
+    <div>
+      {data?.map((message) => (
+        <Message key={message._id} message={message} />
+      ))}
+
+      <button disabled={isLoadingMutation} onClick={addNewMessageHandler}>
+        Add Message
+      </button>
+    </div>
+  );
 };
 
 export default MessagesList;
