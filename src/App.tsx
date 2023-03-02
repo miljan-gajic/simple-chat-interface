@@ -15,7 +15,7 @@ function App() {
 
   return (
     <main className={classes.main}>
-      <MessagesList />
+      <MessagesList toggleAuthorModal={toggle} />
       <AppBar />
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalContent toggleModal={toggle} />

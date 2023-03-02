@@ -9,3 +9,7 @@
 .buttonIcon {
   cursor: pointer;
 }
+
+.buttonIcon.changeUserPopUp {
+  position: relative;
+}

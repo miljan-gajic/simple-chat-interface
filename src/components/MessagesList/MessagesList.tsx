@@ -9,7 +9,11 @@ import { SORTING_MESSAGES } from "utils/constants";
 import type { Message as MessageType } from "utils/types";
 import classes from "./MessageList.module.css";
 
-const MessagesList: React.FC = () => {
+type Props = {
+  toggleAuthorModal: () => void;
+};
+
+const MessagesList: React.FC<Props> = ({ toggleAuthorModal }) => {
   const [sortingOrder, setSortingOrder] = useState(SORTING_MESSAGES.ASC);
 
   const { data: listOfMessages, error } = useQuery<MessageType[]>({
@@ -46,6 +50,7 @@ const MessagesList: React.FC = () => {
       <ToolBox
         sortingHandler={(dir: string) => setSortingOrder(dir)}
         direction={sortingOrder}
+        toggleAuthorModal={toggleAuthorModal}
       />
       {sortedMessagesByTime?.map((message) => (
         <Message key={message._id} message={message} />
