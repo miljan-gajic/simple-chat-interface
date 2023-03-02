@@ -1,5 +1,7 @@
+import { format } from "date-fns";
 import { useAuthor } from "store/authorContext";
 import type { Message as MessageType } from "utils/types";
+import classes from "./Message.module.css";
 
 type Props = {
   message: MessageType;
@@ -7,14 +9,18 @@ type Props = {
 
 const Message: React.FC<Props> = ({ message }) => {
   const {
-    state: { author, messages },
+    state: { author },
   } = useAuthor();
-  return (
-    <div>
-      <p>{message.author}</p>
-      <p>{message.message}</p>
+
+  return author ? (
+    <div className={classes.messageBox}>
+      <p className={classes.secondaryText}>{message.author}</p>
+      <p className={classes.messageText}>{message.message}</p>
+      <p className={classes.secondaryText}>
+        {format(message.timestamp, "dd MMMM yyyy' 'HH:mm")}
+      </p>
     </div>
-  );
+  ) : null;
 };
 
 export default Message;

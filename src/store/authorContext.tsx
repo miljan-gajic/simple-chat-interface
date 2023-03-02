@@ -1,11 +1,11 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
-import type { Message as MessageType, MessagePayload } from "utils/types";
+import type { MessagePayload } from "utils/types";
 
 type Action =
-  | { type: "addUser"; payload: string }
-  | { type: "addMessages"; payload: MessagePayload[] };
+  | { type: "addMessages"; payload: MessagePayload }
+  | { type: "addAuthor"; payload: string };
 type Dispatch = (action: Action) => void;
-type State = { author: string; messages: MessageType[] };
+type State = { [author: string]: { messages: string[]; author: string } };
 type CountProviderProps = { children: React.ReactNode };
 
 export const AuthorStateContext = createContext<
@@ -14,16 +14,21 @@ export const AuthorStateContext = createContext<
 
 export const authorReducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "addUser": {
-      return {
-        ...state,
-        author: action.payload,
-      };
-    }
     case "addMessages": {
       return {
         ...state,
-        messages: action.payload,
+        [action.payload.author]: {
+          messages: [
+            ...(state[action.payload.author]?.messages || []),
+            action.payload.message,
+          ],
+        },
+      };
+    }
+    case "addAuthor": {
+      return {
+        ...state,
+        author: action.payload,
       };
     }
     default: {
@@ -34,12 +39,7 @@ export const authorReducer = (state: State, action: Action) => {
 
 function AuthorProvider({ children }: CountProviderProps) {
   // @ts-ignore
-  const [state, dispatch] = useReducer(authorReducer, {
-    author: "",
-    messages: [],
-  });
-  // NOTE: you *might* need to memoize this value
-  // Learn more in http://kcd.im/optimize-context
+  const [state, dispatch] = useReducer(authorReducer, {});
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
   return (
     <AuthorStateContext.Provider value={value}>

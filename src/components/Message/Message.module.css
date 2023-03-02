@@ -1,0 +1,31 @@
+:root {
+  --clr-secondary: #999;
+  --clr-main: #000;
+  --clr-border: #cecece;
+
+  --bg-clr-secondary: #f4f4f4;
+
+  --fs-secondary: 0.75em;
+}
+
+.secondaryText {
+  font-size: var(--fs-secondary);
+  color: var(--clr-secondary);
+  margin: 0;
+}
+
+.messageBox {
+  border: 2px solid var(--clr-border);
+  border-radius: 0.2rem;
+  padding: 0.75rem;
+  background: #fff;
+  margin-top: 0.65rem;
+  text-align: left;
+  width: max-content;
+}
+
+.messageText {
+  color: var(--clr-main);
+  margin: 0;
+  padding: 0.3rem 0;
+}

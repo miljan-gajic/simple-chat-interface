@@ -1,0 +1,29 @@
+.appBarContainer {
+  background-color: #3898d4;
+  position: fixed;
+  width: 100%;
+}
+
+.appBarContentContainer {
+  max-width: 640px;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 1.2rem 0.5rem;
+  background-color: #fff;
+  color: #000;
+  border-radius: 0.3rem;
+}
+
+.sendButton {
+  background-color: #fb876e;
+  margin-left: 0.5rem;
+  padding: 1.2rem 1.5rem;
+  font-weight: 700;
+}

@@ -1,0 +1,8 @@
+.messagesContainer {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  max-width: 640px;
+  height: calc(100vh - 115px);
+  padding: 0 1.5rem;
+}
