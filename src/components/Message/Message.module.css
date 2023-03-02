@@ -4,6 +4,7 @@
   --clr-border: #cecece;
 
   --bg-clr-secondary: #f4f4f4;
+  --bg-clr-authored: #fcf6c4;
 
   --fs-secondary: 0.75em;
 }
@@ -22,6 +23,12 @@
   margin-top: 0.65rem;
   text-align: left;
   width: max-content;
+  max-width: 400px;
+}
+
+.authoredMessage {
+  align-self: flex-end;
+  background-color: var(--bg-clr-authored);
 }
 
 .messageText {

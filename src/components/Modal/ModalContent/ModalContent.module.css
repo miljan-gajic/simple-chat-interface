@@ -1,0 +1,27 @@
+.modalContentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 1.2rem 0.5rem;
+  background-color: #fff;
+  color: #000;
+  border-radius: 0.3rem;
+  width: 100%;
+}
+
+label {
+  color: #000;
+}
+
+.addAuthorBtn {
+  background-color: #fb876e;
+  margin-top: 0.5rem;
+  padding: 1.2rem 1.5rem;
+  font-weight: 700;
+}

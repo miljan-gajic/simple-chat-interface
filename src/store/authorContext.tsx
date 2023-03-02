@@ -1,11 +1,8 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
-import type { MessagePayload } from "utils/types";
 
-type Action =
-  | { type: "addMessages"; payload: MessagePayload }
-  | { type: "addAuthor"; payload: string };
+type Action = { type: "addAuthor"; payload: string };
 type Dispatch = (action: Action) => void;
-type State = { [author: string]: { messages: string[]; author: string } };
+type State = { author: string };
 type CountProviderProps = { children: React.ReactNode };
 
 export const AuthorStateContext = createContext<
@@ -14,17 +11,6 @@ export const AuthorStateContext = createContext<
 
 export const authorReducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "addMessages": {
-      return {
-        ...state,
-        [action.payload.author]: {
-          messages: [
-            ...(state[action.payload.author]?.messages || []),
-            action.payload.message,
-          ],
-        },
-      };
-    }
     case "addAuthor": {
       return {
         ...state,

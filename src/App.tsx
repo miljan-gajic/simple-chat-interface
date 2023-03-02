@@ -11,14 +11,14 @@ function App() {
     state: { author },
   } = useAuthor();
 
-  const { isOpen, toggle } = useModal(!!!author);
+  const { isOpen, toggle } = useModal(!Boolean(author));
 
   return (
     <main className={classes.main}>
       <MessagesList />
       <AppBar />
       <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalContent />
+        <ModalContent toggleModal={toggle} />
       </Modal>
     </main>
   );

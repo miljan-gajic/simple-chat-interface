@@ -13,8 +13,14 @@ const Message: React.FC<Props> = ({ message }) => {
   } = useAuthor();
 
   return author ? (
-    <div className={classes.messageBox}>
-      <p className={classes.secondaryText}>{message.author}</p>
+    <div
+      className={`${classes.messageBox} ${
+        author === message.author && classes.authoredMessage
+      }`}
+    >
+      {!(message.author === author) ? (
+        <p className={classes.secondaryText}>{message.author}</p>
+      ) : null}
       <p className={classes.messageText}>{message.message}</p>
       <p className={classes.secondaryText}>
         {format(message.timestamp, "dd MMMM yyyy' 'HH:mm")}

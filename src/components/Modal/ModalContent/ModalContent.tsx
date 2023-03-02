@@ -1,8 +1,22 @@
 import { useState } from "react";
+import { useAuthor } from "store/authorContext";
 import classes from "./ModalContent.module.css";
 
-const ModalContent: React.FC = () => {
+type Props = {
+  toggleModal: () => void;
+};
+
+const ModalContent: React.FC<Props> = ({ toggleModal }) => {
   const [author, setAuthor] = useState("");
+  const { dispatch } = useAuthor();
+
+  const setAuthorHandler = () => {
+    dispatch({
+      type: "addAuthor",
+      payload: author,
+    });
+    toggleModal();
+  };
 
   return (
     <div className={classes.modalContentContainer}>
@@ -16,6 +30,9 @@ const ModalContent: React.FC = () => {
           onChange={(e) => setAuthor(e.target.value)}
         />
       </label>
+      <button className={classes.addAuthorBtn} onClick={setAuthorHandler}>
+        Set the name
+      </button>
     </div>
   );
 };
