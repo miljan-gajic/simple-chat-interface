@@ -1,8 +1,10 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
 
-type Action = { type: "addAuthor"; payload: string };
+type Action =
+  | { type: "addAuthor"; payload: string }
+  | { type: "addTimeStamp"; payload: number };
 type Dispatch = (action: Action) => void;
-type State = { author: string };
+type State = { author: string; timestamp: number };
 type CountProviderProps = { children: React.ReactNode };
 
 export const AuthorStateContext = createContext<
@@ -15,6 +17,12 @@ export const authorReducer = (state: State, action: Action) => {
       return {
         ...state,
         author: action.payload,
+      };
+    }
+    case "addTimeStamp": {
+      return {
+        ...state,
+        timestamp: action.payload,
       };
     }
     default: {

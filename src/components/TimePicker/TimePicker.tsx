@@ -1,10 +1,13 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useAuthor } from "store/authorContext";
 import classes from "./TimePicker.module.css";
 
 const TimePicker: React.FC = () => {
   const [date, setDate] = useState(new Date());
+
+  const { dispatch } = useAuthor();
 
   return (
     <div
@@ -13,7 +16,15 @@ const TimePicker: React.FC = () => {
     >
       <DatePicker
         selected={date}
-        onChange={(date, e) => setDate(date ?? new Date())}
+        timeFormat="24"
+        showTimeInput
+        onChange={(date, e) => {
+          setDate(date ?? new Date());
+          dispatch({
+            type: "addTimeStamp",
+            payload: date?.valueOf() ?? 0,
+          });
+        }}
       />
     </div>
   );

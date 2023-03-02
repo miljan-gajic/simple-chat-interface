@@ -2,9 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import Message from "components/Message/Message";
 import Modal from "components/Modal/Modal";
 import ToolBox from "components/ToolBox/ToolBox";
-import { getAllMessages } from "features/messagingInterface";
+import {
+  getAllMessages,
+  getMessagesFromTimestamp,
+} from "features/messagingInterface";
 import useModal from "hooks/modal";
 import { useMemo, useState } from "react";
+import { useAuthor } from "store/authorContext";
 import { SORTING_MESSAGES } from "utils/constants";
 import type { Message as MessageType } from "utils/types";
 import classes from "./MessageList.module.css";
@@ -16,9 +20,15 @@ type Props = {
 const MessagesList: React.FC<Props> = ({ toggleAuthorModal }) => {
   const [sortingOrder, setSortingOrder] = useState(SORTING_MESSAGES.ASC);
 
+  const {
+    state: { timestamp },
+  } = useAuthor();
+
   const { data: listOfMessages, error } = useQuery<MessageType[]>({
-    queryKey: ["messages"],
-    queryFn: getAllMessages,
+    queryKey: ["messages", timestamp],
+    queryFn: timestamp
+      ? () => getMessagesFromTimestamp(timestamp)
+      : getAllMessages,
   });
 
   const { isOpen, toggle } = useModal(Boolean(error));

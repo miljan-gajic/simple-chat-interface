@@ -20,3 +20,11 @@ export const addAMessage = async ({
   });
   return await resp.json();
 };
+
+export const getMessagesFromTimestamp = async (
+  timestamp: number,
+  limit = 10
+) => {
+  const resp = await fetch(`${API_BASE_URL}&since=${timestamp}&limit=${limit}`);
+  return await resp.json();
+};
