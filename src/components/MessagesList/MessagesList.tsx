@@ -1,10 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Message from "components/Message/Message";
 import { addAMessage, getAllMessages } from "features/messagingInterface";
+import { useAuthor } from "store/authorContext";
 import type { Message as MessageType, MessagePayload } from "utils/types";
 
 const MessagesList: React.FC = () => {
   const queryClient = useQueryClient();
+  const { dispatch } = useAuthor();
 
   const { data, error, isLoading, isSuccess } = useQuery<MessageType[]>({
     queryKey: ["messages"],
@@ -32,6 +34,9 @@ const MessagesList: React.FC = () => {
 
       <button disabled={isLoadingMutation} onClick={addNewMessageHandler}>
         Add Message
+      </button>
+      <button onClick={() => dispatch({ type: "addUser", payload: "Goran" })}>
+        Add author
       </button>
     </div>
   );
