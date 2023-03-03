@@ -5,7 +5,7 @@ import ToolBox from "components/ToolBox/ToolBox";
 import {
   getAllMessages,
   getMessagesFromTimestamp,
-} from "features/messagingInterface";
+} from "features/messagingInterface/api";
 import useModal from "hooks/modal";
 import { useMemo, useState } from "react";
 import { useAuthor } from "store/authorContext";

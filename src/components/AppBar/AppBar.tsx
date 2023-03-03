@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addAMessage } from "features/messagingInterface";
+import { addAMessage } from "features/messagingInterface/api";
 import { useState } from "react";
 import { useAuthor } from "store/authorContext";
 import type { MessagePayload } from "utils/types";

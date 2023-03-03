@@ -2,10 +2,30 @@
 
 Vite bootstrap app is a modern and above all really fast solution to bootstrap your `React` app unlike the `create-react-app` where the boilerplate is huge and
 
-### To start the app run
+### Scripts
+
+#### **To start the development server** (you can use _yarn_, _npm_, _pnpm_, etc..):
 
 ```sh
 yarn dev
+```
+
+#### **To preview the prod version of the app** (you can use _yarn_, _npm_, _pnpm_, etc..):
+
+```sh
+yarn preview
+```
+
+#### **To build the app** (you can use _yarn_, _npm_, _pnpm_, etc..):
+
+```sh
+yarn build
+```
+
+#### **To check the type errors** (you can use _yarn_, _npm_, _pnpm_, etc..):
+
+```sh
+yarn check-types
 ```
 
 ### To import the environmental variables
