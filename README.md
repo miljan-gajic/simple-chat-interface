@@ -1,6 +1,8 @@
 ## This is a simple chat interface app bootstrapped with Vite
 
-Vite bootstrap app is a modern and above all really fast solution to bootstrap your `React` app unlike the `create-react-app` where the boilerplate is huge and
+Vite bootstrap app is a modern and above all really fast solution to bootstrap your `React` app unlike the `create-react-app` where the boilerplate is huge and performance and speed are impacted
+
+The app is using `css modules` for styling nad `Typescript` as a main language for the code itself`
 
 ### Scripts
 
