@@ -1,5 +1,9 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
 
+// I have added a context here mostly to add another "data" layer to the app
+// Just to showcase that you don't need to render prop pass children and prop drill
+// To send data down the components chain. But there was no real need for context or redux, zustand, mobx, x-state etc...
+
 type Action =
   | { type: "addAuthor"; payload: string }
   | { type: "addTimeStamp"; payload: number };

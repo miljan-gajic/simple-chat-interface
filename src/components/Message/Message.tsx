@@ -12,6 +12,9 @@ const Message: React.FC<Props> = ({ message }) => {
     state: { author },
   } = useAuthor();
 
+  // If the author is the same as the "logged in author" this means that we want to display the
+  // messages in highlighted yellow to the user to indicate their own messages
+  // keeping the sorted order
   return author ? (
     <div
       className={`${classes.messageBox} ${

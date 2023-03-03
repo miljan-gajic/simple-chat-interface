@@ -1,6 +1,9 @@
 import { API_BASE_URL } from "utils/constants";
 import type { MessagePayload } from "utils/types";
 
+// I have decided to use fetch API mainly because we do not need interceptors and
+// There is no complex client side fetching involved to use cancel tokens and all of the additional functionalities
+// that for example axios has
 export const getAllMessages = async () => {
   const resp = await fetch(API_BASE_URL);
   return await resp.json();

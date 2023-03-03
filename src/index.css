@@ -20,6 +20,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  background: url("../src/assets/body-bg.png");
+  background-size: cover;
 }
 
 #root {
@@ -40,7 +42,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("../src/assets/body-bg.png");
+  margin-bottom: 20rem;
 }
 
 h1 {

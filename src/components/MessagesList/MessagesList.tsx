@@ -24,6 +24,9 @@ const MessagesList: React.FC<Props> = ({ toggleAuthorModal }) => {
     state: { timestamp },
   } = useAuthor();
 
+  // Doing the query based on the timestamp saved in the context store
+  // This is not the best approach but it is good for this kind of approach where we use
+  // react=query as a client caching data fetching library
   const { data: listOfMessages, error } = useQuery<MessageType[]>({
     queryKey: ["messages", timestamp],
     queryFn: timestamp
@@ -43,6 +46,9 @@ const MessagesList: React.FC<Props> = ({ toggleAuthorModal }) => {
     });
   }, [listOfMessages, sortingOrder]);
 
+  // Show the user modal to inform them that there has been an error
+  // Even though there is no centralized Error handling implemented - mainly because this is really just a simple app
+  // Some feedback is always good to have and leveraging the react-query error is convenient
   if (error) {
     return (
       <Modal isOpen={isOpen} toggle={toggle}>

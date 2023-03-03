@@ -11,8 +11,12 @@ function App() {
     state: { author },
   } = useAuthor();
 
+  // control the modal from the top most component
   const { isOpen, toggle } = useModal(!Boolean(author));
 
+  // I have decided to prop-drill here instead of render-prop of have Child components
+  // Because many people are afraid to prop drill these days but I say you do what the app complexity and robustness
+  // dictates you to do. There is no need to do fancy stuff here
   return (
     <main className={classes.main}>
       <MessagesList toggleAuthorModal={toggle} />

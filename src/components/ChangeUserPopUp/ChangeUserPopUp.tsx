@@ -6,6 +6,7 @@ type Props = {
 };
 
 const ChangeUserPopUp: React.FC<Props> = ({ toggleAuthorModal }) => {
+  // Combination of code to dispatch the author to the context store
   const {
     dispatch,
     state: { author },

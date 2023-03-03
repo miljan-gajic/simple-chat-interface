@@ -17,6 +17,8 @@ const ToolBox: React.FC<Props> = ({
   direction,
   toggleAuthorModal,
 }) => {
+  // More than two pieces of state and we could introduce the useReducer to store the state
+  // which is more easier way of updating large number of pieces of state
   const [showUserPopUp, setShowUserPopUp] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
 

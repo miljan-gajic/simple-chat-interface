@@ -27,6 +27,8 @@ const AppBar: React.FC = () => {
     setMessage("");
   };
 
+  // The <section /> semantic tag is used here because although this component resembles a Footer
+  // it is not!
   return (
     <section className={classes.appBarContainer}>
       <div className={classes.appBarContentContainer}>
